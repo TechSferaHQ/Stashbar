@@ -189,6 +189,9 @@ body{overflow-x:clip}
 .mac-app-name{font-weight:700;letter-spacing:-.01em}
 .mac-menu-item{opacity:.86}
 .mac-clock{font-variant-numeric:tabular-nums;font-size:12.5px}
+/* macOS status icons (Wi-Fi, Spotlight, Control Center) between the Stashbar icon and the clock */
+.mac-status-icons{display:inline-flex;align-items:center;gap:16px}
+.mac-status-ic{display:block;flex-shrink:0;opacity:.9}
 
 /* Simple Bare Native macOS Template Stashbar Pin Icon (matches AppDelegate.swift) */
 .mac-menubar-logo{
