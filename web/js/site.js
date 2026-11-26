@@ -100,7 +100,7 @@ if (heroPin && heroStage && heroTop) {
     heroStage.style.zIndex = '45';
 
     if (macAppStack && settledStackW > 0) {
-      const stackScale = heroLerp(1.024, 1, e);
+      const stackScale = 1; // no zoom on the app area: the control bar under the window must stay inside the screen
       macAppStack.style.width = settledStackW + 'px';
       macAppStack.style.transform = `translate3d(-50%, 0, 0) scale(${stackScale.toFixed(4)})`;
     }
@@ -1309,11 +1309,8 @@ if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-mot
     const sync = () => {
       const next = window.scrollY > 40;
       if (next !== compact) {
-        const wasCompact = compact;
         compact = next;
         dock.classList.toggle('is-compact', next);
-        // fade the labelled bar back in at the bottom when returning to the top
-        if (!next && wasCompact) { dock.classList.remove('is-expanding'); void dock.offsetWidth; dock.classList.add('is-expanding'); }
       }
     };
     window.addEventListener('scroll', sync, { passive: true });
