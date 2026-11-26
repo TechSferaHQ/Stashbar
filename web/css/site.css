@@ -240,6 +240,8 @@ body{overflow-x:clip}
 .mac-main-col{
   display:flex;flex-direction:column;justify-content:center;gap:16px;
   min-width:0;min-height:0;flex:1;
+  /* Same window size as when the controls sat in a column on the left */
+  width:calc(100% - 153px);align-self:center;
 }
 .mac-window-host{
   width:100%;
@@ -322,10 +324,10 @@ body{overflow-x:clip}
   height:44px;padding:0 20px;border-radius:10px;font-size:14px;
 }
 
-/* Frosted glass control bar, centred under the app window */
+/* Frosted glass control bar, floating over the bottom edge of the app window like the macOS Dock,
+   so the window keeps its full size */
 .mac-dock{
-  order:2;
-  align-self:center;
+  position:absolute;left:50%;bottom:-12px;transform:translateX(-50%);
   flex-shrink:0;
   display:flex;flex-direction:row;align-items:center;gap:4px;
   padding:5px;border-radius:9999px;
@@ -1658,13 +1660,14 @@ body{overflow-x:clip}
     transform:translate3d(-50%,0,0)!important;
   }
   .mac-dock{
+    position:static;transform:none;
     order:2;margin-bottom:0;align-self:center;
     flex-direction:row;padding:4px;border-radius:9999px;gap:2px;
   }
   .mac-dock-sep{width:1px;height:16px;margin:0 4px}
   .mac-dock-btn{width:34px;height:34px;padding:0;justify-content:center;border-radius:9999px}
   .mac-dock-btn span{display:none}
-  .mac-main-col{order:1;flex:1;gap:10px}
+  .mac-main-col{order:1;flex:1;gap:10px;width:auto;align-self:stretch}
   .mac-under-sub{display:none}
   .mac-under-actions{width:100%}
   .btn-under{flex:1;height:40px;padding:0 12px;font-size:13px}
