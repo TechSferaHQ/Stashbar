@@ -1420,14 +1420,31 @@ body{overflow-x:clip}
 .step-card:hover .step-kcap:nth-child(2){transform:translateY(-5px) rotate(3deg);transition-delay:.04s}
 
 /* Clean Interactive Accordion FAQ */
-.faq-wrap{max-width:740px;margin:0 auto;width:100%}
+.faq-wrap{max-width:880px;margin:0 auto;width:100%}
+/* FAQ: full-width rows between hairlines; the open question sits on a soft tinted panel and its answer
+   glides open (height + fade). The toggle is a small ink square whose plus turns into a minus. */
 .faq-list{border-bottom:1px solid var(--line)}
-.faq-acc{border-top:1px solid var(--line)}
-.faq-acc summary{list-style:none;cursor:pointer;padding:20px 0;display:flex;align-items:center;justify-content:space-between;gap:16px;font-weight:500;font-size:16.5px;color:var(--ink)}
+.faq-acc{border-top:1px solid var(--line);background:transparent;transition:background-color .35s ease}
+.faq-acc.is-open{background:var(--beige)}
+.faq-acc summary{list-style:none;cursor:pointer;padding:24px 24px;display:flex;align-items:center;justify-content:space-between;gap:24px;
+  font-weight:400;font-size:18px;line-height:1.4;letter-spacing:-.01em;color:var(--ink);transition:background-color .2s ease}
 .faq-acc summary::-webkit-details-marker{display:none}
-.faq-plus{width:26px;height:26px;border-radius:8px;background:var(--beige);display:grid;place-items:center;flex-shrink:0;transition:transform .18s ease,background-color .18s ease}
-.faq-acc[open] .faq-plus{background:var(--accent);transform:rotate(45deg)}
-.faq-acc p{margin:0;padding:0 0 20px;font-size:14.5px;line-height:1.6;color:var(--muted);max-width:620px}
+.faq-acc:not(.is-open) summary:hover{background:rgba(244,242,240,.6)}
+.faq-acc summary:focus-visible{outline:2px solid var(--ink);outline-offset:-2px}
+.faq-plus{position:relative;width:28px;height:28px;border-radius:6px;background:var(--ink);flex-shrink:0;transition:background-color .2s ease}
+.faq-plus i{position:absolute;left:50%;top:50%;width:12px;height:1.6px;border-radius:1px;background:#fff;transform:translate(-50%,-50%);
+  transition:transform .35s cubic-bezier(.22,1,.36,1),background-color .2s ease}
+.faq-plus i:last-child{transform:translate(-50%,-50%) rotate(90deg)}
+.faq-acc.is-open .faq-plus i:last-child{transform:translate(-50%,-50%) rotate(0deg)}
+.faq-acc summary:hover .faq-plus{background:var(--accent)}
+.faq-acc summary:hover .faq-plus i{background:var(--ink)}
+.faq-body{display:grid;grid-template-rows:0fr;transition:grid-template-rows .45s cubic-bezier(.22,1,.36,1)}
+.faq-acc.is-open .faq-body{grid-template-rows:1fr}
+.faq-inner{overflow:hidden;min-height:0;opacity:0;transform:translateY(-4px);transition:opacity .3s ease,transform .45s cubic-bezier(.22,1,.36,1)}
+.faq-acc.is-open .faq-inner{opacity:1;transform:none;transition-delay:.06s}
+.faq-acc p{margin:0;padding:0 24px 26px;font-size:15.5px;line-height:1.65;color:var(--muted);max-width:760px}
+@media (max-width:768px){.faq-acc summary{padding:20px 16px;font-size:16px}.faq-acc p{padding:0 16px 22px;font-size:14.5px}}
+@media (prefers-reduced-motion:reduce){.faq-body,.faq-inner,.faq-plus i,.faq-acc{transition:none}}
 
 /* Subtle Scroll Settle Reveal Animations */
 [data-reveal]{

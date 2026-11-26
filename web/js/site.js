@@ -1301,6 +1301,31 @@ if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-mot
   document.querySelectorAll('[data-reveal]').forEach(el => el.classList.add('is-revealed'));
 }
 
+// ---- FAQ: smooth open/close, one question open at a time ----
+{
+  const items = [...document.querySelectorAll('.faq-acc')];
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)');
+  const close = d => {
+    d.classList.remove('is-open');
+    const body = d.querySelector('.faq-body');
+    const done = () => { if (!d.classList.contains('is-open')) d.open = false; };
+    if (reduce.matches || !body) return done();
+    body.addEventListener('transitionend', function te(e) { if (e.propertyName === 'grid-template-rows') { body.removeEventListener('transitionend', te); done(); } });
+    setTimeout(done, 600); // safety net if no transition fires
+  };
+  const open = d => {
+    d.open = true;
+    requestAnimationFrame(() => requestAnimationFrame(() => d.classList.add('is-open')));
+  };
+  items.forEach(d => {
+    d.querySelector('summary').addEventListener('click', e => {
+      e.preventDefault();
+      if (d.classList.contains('is-open')) close(d);
+      else { items.forEach(o => { if (o !== d && o.classList.contains('is-open')) close(o); }); open(d); }
+    });
+  });
+}
+
 // ---- Hero control bar: icon-only once the page is scrolled, full labels at the very top ----
 {
   const dock = document.querySelector('.mac-dock');
