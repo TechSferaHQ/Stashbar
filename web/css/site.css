@@ -324,11 +324,13 @@ body{overflow-x:clip}
 .btn-under{
   height:44px;padding:0 20px;border-radius:10px;font-size:14px;
 }
+/* A leading icon already adds visual weight on the left, so trim that side by 2px */
+.btn-under:has(> svg:first-child){padding-left:18px}
 
 /* Frosted glass control bar, floating over the bottom edge of the app window like the macOS Dock,
    so the window keeps its full size */
 .mac-dock{
-  position:absolute;left:50%;bottom:-12px;transform:translateX(-50%);
+  position:absolute;left:50%;bottom:6px;transform:translateX(-50%);
   flex-shrink:0;
   display:flex;flex-direction:row;align-items:center;gap:4px;
   padding:5px;border-radius:9999px;
