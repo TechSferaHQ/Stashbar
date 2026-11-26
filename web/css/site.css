@@ -357,6 +357,12 @@ body{overflow-x:clip}
   transition:background-color .18s ease,color .18s ease;
 }
 .mac-dock-btn svg,.mac-dock-btn img{width:14px;height:14px;flex-shrink:0;opacity:.92}
+/* Labels collapse to icon-only once the page scrolls, so the bar takes less room over the app window */
+.mac-dock-btn{transition:background-color .18s ease,color .18s ease,padding .35s cubic-bezier(.22,1,.36,1),gap .35s cubic-bezier(.22,1,.36,1)}
+.mac-dock-btn span{display:inline-block;max-width:140px;overflow:hidden;opacity:1;
+  transition:max-width .35s cubic-bezier(.22,1,.36,1),opacity .2s ease}
+.mac-dock.is-compact .mac-dock-btn{gap:0;padding:0 10px}
+.mac-dock.is-compact .mac-dock-btn span{max-width:0;opacity:0}
 .mac-dock-btn:hover:not(.is-active){background:rgba(255,255,255,.12);color:#fff}
 .mac-dock-btn.is-active{background:rgba(255,255,255,.22);color:#fff}
 .mac-dock-btn .ic-moon{display:none}

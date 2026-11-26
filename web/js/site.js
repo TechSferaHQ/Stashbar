@@ -1301,6 +1301,20 @@ if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-mot
   document.querySelectorAll('[data-reveal]').forEach(el => el.classList.add('is-revealed'));
 }
 
+// ---- Hero control bar: icon-only once the page is scrolled, full labels at the very top ----
+{
+  const dock = document.querySelector('.mac-dock');
+  if (dock) {
+    let compact = null;
+    const sync = () => {
+      const next = window.scrollY > 40;
+      if (next !== compact) { compact = next; dock.classList.toggle('is-compact', next); }
+    };
+    window.addEventListener('scroll', sync, { passive: true });
+    sync();
+  }
+}
+
 // ---- Reloading the home page always starts at the top (no jumping to a section or old scroll spot) ----
 const isReload = (performance.getEntriesByType?.('navigation')[0]?.type) === 'reload';
 if (document.getElementById('heroPin')) {
