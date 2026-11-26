@@ -1301,6 +1301,17 @@ if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-mot
   document.querySelectorAll('[data-reveal]').forEach(el => el.classList.add('is-revealed'));
 }
 
+// ---- Reloading the home page always starts at the top (no jumping to a section or old scroll spot) ----
+const isReload = (performance.getEntriesByType?.('navigation')[0]?.type) === 'reload';
+if (document.getElementById('heroPin')) {
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+  if (isReload) {
+    if (location.hash) history.replaceState(null, '', location.pathname + location.search);
+    window.scrollTo(0, 0);
+    window.addEventListener('load', () => window.scrollTo(0, 0));
+  }
+}
+
 // ---- "See pricing": smooth scroll to the pricing section (also when arriving via /#pricing) ----
 {
   const pricing = document.getElementById('pricing');
@@ -1311,9 +1322,10 @@ if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-mot
       window.scrollTo({ top: y, behavior: smooth && !matchMedia('(prefers-reduced-motion: reduce)').matches ? 'smooth' : 'auto' });
     };
     document.querySelectorAll('a[href="#pricing"], a[href="/#pricing"]').forEach(a => {
-      a.addEventListener('click', e => { e.preventDefault(); history.replaceState(null, '', '#pricing'); goToPricing(); });
+      // Scroll without adding #pricing to the address, so a reload starts at the top.
+      a.addEventListener('click', e => { e.preventDefault(); goToPricing(); });
     });
-    if (location.hash === '#pricing') {
+    if (location.hash === '#pricing' && !isReload) {
       // The hero resizes the page after load; land on pricing once layout has settled.
       window.addEventListener('load', () => setTimeout(() => goToPricing(false), 60));
     }
