@@ -13,7 +13,7 @@
 <link rel="apple-touch-icon" href="/assets/brand/apple-touch-icon.png">
 <link rel="preload" href="/assets/fonts/outfit-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/macos-day.webp?v=18" as="image" type="image/webp">
-<link rel="stylesheet" href="/css/site.css?v=61">
+<link rel="stylesheet" href="/css/site.css?v=62">
 </head>
 <body>
 
@@ -714,11 +714,14 @@
 
                   <div class="wui-clip-row is-secret">
                     <span class="wui-clip-ico is-lock"><img src="/assets/icons/lock.svg" width="14" height="14" alt=""></span>
-                    <div class="wui-clip-meta">
-                      <b>1Password · <span class="wui-mask-dots">••••••••••••</span></b>
-                      <span>Concealed credential · Untouched</span>
+                    <div class="wui-clip-meta wui-secret-meta">
+                      <b>1Password <em class="wui-secret-chip">Concealed</em></b>
+                      <span class="wui-mask" role="img" aria-label="Hidden password, never read"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
                     </div>
-                    <span class="wui-skip-tag">Ignored</span>
+                    <span class="wui-skip-tag wui-skip-ignored">
+                      <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3l18 18"/><path d="M10.6 5.1A9.8 9.8 0 0 1 12 5c5 0 8.5 4.5 9.5 7-.4 1-1.2 2.3-2.3 3.5M6.6 6.6C4.6 7.9 3.2 9.9 2.5 12c1 2.5 4.5 7 9.5 7 1.9 0 3.6-.6 5-1.6"/><path d="M9.9 9.9a3 3 0 0 0 4.2 4.2"/></svg>
+                      Ignored
+                    </span>
                   </div>
                 </div>
               </div>

@@ -1213,7 +1213,8 @@ body{overflow-x:clip}
   transition:transform .3s cubic-bezier(.22,1,.36,1),opacity .28s ease,border-color .25s ease,box-shadow .3s ease;
 }
 .wui-clip-row.is-secret{
-  background:rgba(255,255,255,.62);border-style:dashed;
+  /* soft diagonal stripes read as "redacted" */
+  background:repeating-linear-gradient(135deg,rgba(12,10,8,.028) 0 6px,transparent 6px 12px),rgba(255,255,255,.7);
 }
 .wf-stage:hover .wui-clip-row.is-valid{
   transform:translateY(-2px) scale(1.012);
@@ -1235,6 +1236,17 @@ body{overflow-x:clip}
 .wui-clip-meta span{font-size:11.5px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .wui-mask-dots{display:inline-block;transition:filter .28s ease}
 .wf-stage:hover .wui-mask-dots{filter:blur(2.4px)}
+/* Concealed-credential row */
+.wui-secret-meta{gap:6px}
+.wui-secret-meta b{display:flex;align-items:center;gap:7px}
+.wui-secret-chip{font-style:normal;font-size:10.5px;font-weight:500;letter-spacing:.02em;line-height:1;
+  padding:3px 6px;border-radius:5px;background:var(--charcoal);color:#fff}
+.wui-mask{display:inline-flex;align-items:center;gap:4px;align-self:flex-start;height:20px;padding:0 8px;border-radius:6px;
+  background:var(--white);border:1px solid var(--line);transition:filter .28s ease}
+.wui-mask i{width:5px;height:5px;border-radius:50%;background:var(--ink);opacity:.72}
+.wf-stage:hover .wui-mask{filter:blur(1.8px)}
+.wui-skip-ignored{gap:5px}
+.wui-skip-ignored svg{flex-shrink:0;opacity:.8}
 .wui-allow-tag{
   height:25px;padding:0 9px;border-radius:7px;background:var(--beige);
   font-size:11.5px;font-weight:500;color:var(--ink);
