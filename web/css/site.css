@@ -229,7 +229,7 @@ body{overflow-x:clip}
 /* Left Vertical Dock + Main App Window + Under-Window Download CTA */
 .mac-app-stack{
   position:absolute;
-  top:46px;bottom:20px;left:50%;
+  top:37px;bottom:7px;left:50%;
   transform:translate3d(-50%,0,0);
   width:min(1310px,95%);
   display:flex;flex-direction:column;gap:14px;align-items:stretch;
@@ -238,7 +238,7 @@ body{overflow-x:clip}
   will-change:transform;
 }
 .mac-main-col{
-  display:flex;flex-direction:column;justify-content:center;gap:16px;
+  display:flex;flex-direction:column;justify-content:center;gap:28px;
   min-width:0;min-height:0;flex:1;
   /* Same window size as when the controls sat in a column on the left */
   width:calc(100% - 153px);align-self:center;
@@ -314,7 +314,7 @@ body{overflow-x:clip}
   color:var(--ink);
 }
 .mac-under-sub{
-  margin:0;max-width:640px;
+  margin:0;max-width:470px;
   font-size:15px;line-height:1.42;color:rgba(12,10,8,.66);
   text-wrap:pretty;
 }
@@ -330,7 +330,7 @@ body{overflow-x:clip}
 /* Frosted glass control bar, floating over the bottom edge of the app window like the macOS Dock,
    so the window keeps its full size */
 .mac-dock{
-  position:absolute;left:50%;bottom:6px;transform:translateX(-50%);
+  position:absolute;left:50%;bottom:10px;transform:translateX(-50%);
   flex-shrink:0;
   display:flex;flex-direction:row;align-items:center;gap:4px;
   padding:5px;border-radius:9999px;
