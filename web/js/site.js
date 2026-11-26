@@ -1308,7 +1308,13 @@ if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-mot
     let compact = null;
     const sync = () => {
       const next = window.scrollY > 40;
-      if (next !== compact) { compact = next; dock.classList.toggle('is-compact', next); }
+      if (next !== compact) {
+        const wasCompact = compact;
+        compact = next;
+        dock.classList.toggle('is-compact', next);
+        // fade the labelled bar back in at the bottom when returning to the top
+        if (!next && wasCompact) { dock.classList.remove('is-expanding'); void dock.offsetWidth; dock.classList.add('is-expanding'); }
+      }
     };
     window.addEventListener('scroll', sync, { passive: true });
     sync();

@@ -363,6 +363,22 @@ body{overflow-x:clip}
   transition:max-width .35s cubic-bezier(.22,1,.36,1),opacity .2s ease}
 .mac-dock.is-compact .mac-dock-btn{gap:0;padding:0 10px}
 .mac-dock.is-compact .mac-dock-btn span{max-width:0;opacity:0}
+/* Scrolled: the icon-only bar moves into the empty margin left of the app window as a vertical pill,
+   centred on the window (which starts below the download row), so it never covers the dashboard */
+@media (min-width:769px){
+  .mac-dock.is-compact{
+    left:16px;bottom:auto;top:calc(50% + 50px);transform:translateY(-50%);
+    flex-direction:column;padding:5px;
+    animation:sb-dock-in .4s cubic-bezier(.22,1,.36,1);
+  }
+  .mac-dock.is-compact .mac-dock-btn{width:34px;padding:0;justify-content:center}
+  .mac-dock.is-compact .mac-dock-btn span{display:none}
+  .mac-dock.is-compact .mac-dock-sep{width:18px;height:1px;margin:3px auto}
+  .mac-dock.is-expanding{animation:sb-dock-in-x .4s cubic-bezier(.22,1,.36,1)}
+}
+@keyframes sb-dock-in{from{opacity:0;transform:translate(-8px,-50%)}to{opacity:1;transform:translate(0,-50%)}}
+@keyframes sb-dock-in-x{from{opacity:0;transform:translate(-50%,8px)}to{opacity:1;transform:translate(-50%,0)}}
+@media (prefers-reduced-motion:reduce){.mac-dock.is-compact,.mac-dock.is-expanding{animation:none}}
 .mac-dock-btn:hover:not(.is-active){background:rgba(255,255,255,.12);color:#fff}
 .mac-dock-btn.is-active{background:rgba(255,255,255,.22);color:#fff}
 .mac-dock-btn .ic-moon{display:none}
